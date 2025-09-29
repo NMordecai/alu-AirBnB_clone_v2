@@ -1,34 +1,42 @@
 #!/usr/bin/python3
-"""Script that starts a Flask web application."""
+""" Script that runs an app with Flask framework """
 from flask import Flask
+
 
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello():
-    return "Hello HBNB!"
+def hello_hbnb():
+    """ Function called with / route """
+    return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
-def hello_hbnb():
-    return "HBNB"
+def hbnb():
+    """ Function called with /hbnb route """
+    return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def hello_c(text):
-    return 'C ' + text.replace('_', ' ')
+def c_text(text):
+    """ Function called with /c/<text> route """
+    return 'C %s' % text.replace('_', ' ')
 
 
-@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
+@app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python(text):
-    return 'Python ' + text.replace('_', ' ')
+def python_text(text='is cool'):
+    """ Function called with /python/<text> route """
+    if text is not 'is cool':
+        text = text.replace('_', ' ')
+    return 'Python %s' % text
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    return "{} is a number".format(n)
+    """ Function called with /number/<n> route """
+    return "%d is a number" % n
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0', port=5000)

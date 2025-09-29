@@ -5,7 +5,7 @@ from models.amenity import Amenity
 
 
 class TestAmenity(TestBaseModel):
-    """ Test for amenity"""
+    """ Test for amenity!"""
 
     def __init__(self, *args, **kwargs):
         """ """
@@ -18,4 +18,3 @@ class TestAmenity(TestBaseModel):
         new = self.value()
         new.name = "amenity"
         self.assertEqual(type(new.name), str)
-

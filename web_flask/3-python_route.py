@@ -1,35 +1,37 @@
 #!/usr/bin/python3
-
-"""Script that starts a Flask web application"""
+""" Script that runs an app with Flask framework """
 from flask import Flask
+
 
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
-    """Comment"""
-    return "Hello HBNB!"
+    """ Function called with / route """
+    return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Comment"""
-    return "HBNB"
+    """ Function called with /hbnb route """
+    return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def text_route(text):
-    """Comment"""
-    return "C {}".format(text.replace("_", " "))
+def c_text(text):
+    """ Function called with /c/<text> route """
+    return 'C %s' % text.replace('_', ' ')
 
 
-@app.route('/python', strict_slashes=False)
+@app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def text_route_python(text="is cool"):
-    """Comment"""
-    return "Python {}".format(text.replace("_", " "))
+def python_text(text='is cool'):
+    """ Function called with /python/<text> route """
+    if text is not 'is cool':
+        text = text.replace('_', ' ')
+    return 'Python %s' % text
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
